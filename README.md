@@ -29,6 +29,15 @@
 
 Light and intuitive Dependency Injection Library for [pyEchoNext Project](https://github.com/alexeev-prog/pyEchoNext).
 
+## Tests coverage
+To test the library, PyTest with the pytest-cov plugin is used. You can look at the tests in [tests directory](./tests)
+
+| Statements | Miss       | Coverage |
+|------------|------------|----------|
+| 70         | 13         | 81%      |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Check Other My Projects
 
  + [SQLSymphony](https://github.com/alexeev-prog/SQLSymphony) - simple and fast ORM in sqlite (and you can add other DBMS)
@@ -38,12 +47,14 @@ Light and intuitive Dependency Injection Library for [pyEchoNext Project](https:
  + [pycolor-palette](https://github.com/alexeev-prog/pycolor-palette) - display beautiful log messages, logging, debugging.
  + [shegang](https://github.com/alexeev-prog/shegang) - powerful command interpreter (shell) for linux written in C
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 🚀 Getting Started
 
-EchoNext DI is available on [PyPI](https://pypi.org/project/echonext_di). Simply install the package into your project environment with PIP:
+EchoNext DI is available on [PyPI](https://pypi.org/project/echonextdi). Simply install the package into your project environment with PIP:
 
 ```bash
-pip install echonext_di
+pip install echonextdi
 ```
 
 Once installed, you can start using the library in your Python projects.

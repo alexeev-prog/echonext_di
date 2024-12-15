@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict
 
-import orjson as json
+import json
 import toml
 import yaml
 
