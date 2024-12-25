@@ -17,11 +17,11 @@ class CallableProvider(Provider):
 		"""
 		self.handler = handler
 
-	def get_instance(self) -> Any:
+	def get_instance(self, *args, **kwargs) -> Any:
 		"""
 		Gets the instance.
 
 		:returns:	The instance.
 		:rtype:		Any
 		"""
-		return self.handler()
+		return self.handler(*args, **kwargs)

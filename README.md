@@ -34,7 +34,7 @@ To test the library, PyTest with the pytest-cov plugin is used. You can look at 
 
 | Statements | Miss       | Coverage |
 |------------|------------|----------|
-| 70         | 13         | 81%      |
+| 77         | 13         | 83%      |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
