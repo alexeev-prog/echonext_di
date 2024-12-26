@@ -18,7 +18,7 @@ class SingletonProvider(Provider):
 		self.cls = cls
 		self._instance: Optional[Any] = None
 
-	def get_instance(self) -> Any:
+	def __call__(self) -> Any:
 		"""
 		Gets the instance.
 

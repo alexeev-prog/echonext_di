@@ -12,8 +12,8 @@ class DictProvider(Provider):
 		"""
 		Constructs a new instance.
 
-		:param      dictionary:  The dictionary
-		:type       dictionary:  { type_description }
+		:param		dictionary:	 The dictionary
+		:type		dictionary:	 { type_description }
 		"""
 		self.dictionary = dictionary
 
@@ -21,12 +21,12 @@ class DictProvider(Provider):
 		"""
 		Appends an item.
 
-		:param      item:  The item
-		:type       item:  Any
+		:param		item:  The item
+		:type		item:  Any
 		"""
 		self.dictionary[key] = value
 
-	def get_instance(self) -> Any:
+	def __call__(self) -> Any:
 		"""
 		Gets the instance.
 

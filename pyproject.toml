@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "echonextdi"
-version = "0.1.0"
+version = "0.2.0"
 description = "Light and intuitive Dependency Injection Library for pyEchoNext Project"
 authors = ["alexeev-prog <alexeev.dev@mail.ru>"]
 license = "GNU LGPL 2.1"
@@ -17,6 +17,7 @@ toml = "^0.10"
 pytest-cov = "^6.0.0"
 pytest = "^8.0.4"
 ruff = "^0.8.0"
+black = "^24.10.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -17,6 +17,7 @@ class Container:
 		Constructs a new instance.
 		"""
 		self._providers: Dict[str, Provider] = {}
+		self._resolved: set = set()
 
 	def register(self, key: str, provider: Provider):
 		"""
@@ -76,23 +77,28 @@ class Container:
 
 			return None
 
-		return provider.get_instance()
+		return provider
 
-	def resolve(self, cls: Type[T]) -> T:
+	def resolve(self, cls: Type[T], *args, **kwargs) -> T:
 		"""
-		Automatic resolve dependencies for class
+		Resolve dependency
 
-		:param		cls:  The cls
-		:type		cls:  Type[T]
+		:param		cls:	 The cls
+		:type		cls:	 Type[T]
+		:param		args:	 The arguments
+		:type		args:	 list
+		:param		kwargs:	 The keywords arguments
+		:type		kwargs:	 dictionary
 
-		:returns:	class object
+		:returns:	class instance
 		:rtype:		T
 		"""
 		constructor = inspect.signature(cls.__init__)
-		dependencies = {
-			name: self.get(param.annotation.__name__)
-			for name, param in constructor.parameters.items()
-			if param.annotation in self._providers
-		}
+
+		dependencies = {}
+
+		for name, param in constructor.parameters.items():
+			if name in self._providers:
+				dependencies[name] = self.get(name)
 
 		return cls(**dependencies)

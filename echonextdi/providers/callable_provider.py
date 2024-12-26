@@ -17,7 +17,7 @@ class CallableProvider(Provider):
 		"""
 		self.handler = handler
 
-	def get_instance(self, *args, **kwargs) -> Any:
+	def __call__(self, *args, **kwargs) -> Any:
 		"""
 		Gets the instance.
 

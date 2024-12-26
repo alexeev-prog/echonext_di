@@ -2,10 +2,10 @@ from echonextdi.providers.callable_provider import CallableProvider
 
 
 def function(a: int, b: int = 2):
-	return a ** b
+	return a**b
 
 
 def test_callable():
 	cp = CallableProvider(function)
-	result = cp.get_instance(a=2)
+	result = cp(a=2)
 	assert result == 4

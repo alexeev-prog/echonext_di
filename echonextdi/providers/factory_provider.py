@@ -33,14 +33,14 @@ class Product(AbstractProduct):
 		"""
 		self.handler = handler
 
-	def call(self) -> Any:
+	def call(self, *args, **kwargs) -> Any:
 		"""
 		Call handler
 
 		:returns:	result of handler
 		:rtype:		Any
 		"""
-		return self.handler()
+		return self.handler(*args, **kwargs)
 
 
 class AbstractFactory(ABC):
@@ -73,14 +73,14 @@ class ProductFactory(AbstractFactory):
 		"""
 		self.product = Product(handler)
 
-	def get_product(self) -> Any:
+	def get_product(self, *args, **kwargs) -> Any:
 		"""
 		Gets the product.
 
 		:returns:	The product.
 		:rtype:		Any
 		"""
-		return self.product.call()
+		return self.product.call(*args, **kwargs)
 
 
 class FactoryProvider(Provider):
@@ -97,11 +97,11 @@ class FactoryProvider(Provider):
 		"""
 		self.factory = ProductFactory(handler)
 
-	def get_instance(self) -> Any:
+	def __call__(self, *args, **kwargs) -> Any:
 		"""
 		Gets the instance.
 
 		:returns:	The instance.
 		:rtype:		Any
 		"""
-		return self.factory.get_product()
+		return self.factory.get_product(*args, **kwargs)

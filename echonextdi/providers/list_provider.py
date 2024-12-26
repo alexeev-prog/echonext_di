@@ -12,8 +12,8 @@ class ListProvider(Provider):
 		"""
 		Constructs a new instance.
 
-		:param      datalist:  The datalist
-		:type       datalist:  List[Any]
+		:param		datalist:  The datalist
+		:type		datalist:  List[Any]
 		"""
 		self.datalist = datalist
 
@@ -21,12 +21,12 @@ class ListProvider(Provider):
 		"""
 		Appends an item.
 
-		:param      item:  The item
-		:type       item:  Any
+		:param		item:  The item
+		:type		item:  Any
 		"""
 		self.datalist.append(item)
 
-	def get_instance(self) -> Any:
+	def __call__(self) -> Any:
 		"""
 		Gets the instance.
 

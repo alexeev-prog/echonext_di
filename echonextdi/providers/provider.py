@@ -8,7 +8,7 @@ class Provider(ABC):
 	"""
 
 	@abstractmethod
-	def get_instance(self) -> Any:
+	def __call__(self) -> Any:
 		"""
 		Gets the instance.
 

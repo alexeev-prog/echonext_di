@@ -1,7 +1,7 @@
+import json
 from abc import ABC, abstractmethod
 from typing import Any, Dict
 
-import json
 import toml
 import yaml
 
@@ -18,8 +18,8 @@ class AbstractConfig(ABC):
 		"""
 		Gets the loaded configuration.
 
-		:returns:   The loaded configuration.
-		:rtype:     { return_type_description }
+		:returns:	The loaded configuration.
+		:rtype:		{ return_type_description }
 		"""
 		raise NotImplementedError
 
@@ -33,8 +33,8 @@ class AbstractConfigFactory(ABC):
 		"""
 		Creates a configuration.
 
-		:returns:   The abstract configuration.
-		:rtype:     AbstractConfig
+		:returns:	The abstract configuration.
+		:rtype:		AbstractConfig
 		"""
 		raise NotImplementedError
 
@@ -48,8 +48,8 @@ class ConfigFactory(AbstractConfigFactory):
 		"""
 		Constructs a new instance.
 
-		:param      config_path:  The configuration path
-		:type       config_path:  str
+		:param		config_path:  The configuration path
+		:type		config_path:  str
 		"""
 		self.ext = config_path.split(".")[-1]
 		self.config_path = config_path
@@ -58,8 +58,8 @@ class ConfigFactory(AbstractConfigFactory):
 		"""
 		Creates a configuration.
 
-		:returns:   config dict
-		:rtype:     Dict[Any, Any]
+		:returns:	config dict
+		:rtype:		Dict[Any, Any]
 		"""
 		if self.ext.lower() == "json":
 			return JSONConfig(self.config_path)
@@ -73,13 +73,13 @@ class JSONConfig(AbstractConfig):
 	"""
 	This class describes a json configuration.
 	"""
-	
+
 	def __init__(self, config_path: str):
 		"""
 		Constructs a new instance.
 
-		:param      config_path:  The configuration path
-		:type       config_path:  str
+		:param		config_path:  The configuration path
+		:type		config_path:  str
 		"""
 		self.config_path = config_path
 		self.config: Dict[Any, Any] = {}
@@ -88,8 +88,8 @@ class JSONConfig(AbstractConfig):
 		"""
 		Gets the loaded configuration.
 
-		:returns:   The loaded configuration.
-		:rtype:     Dict[Any, Any]
+		:returns:	The loaded configuration.
+		:rtype:		Dict[Any, Any]
 		"""
 		with open(self.config_path) as f:
 			self.config = json.load(f)
@@ -106,8 +106,8 @@ class TOMLConfig(AbstractConfig):
 		"""
 		Constructs a new instance.
 
-		:param      config_path:  The configuration path
-		:type       config_path:  str
+		:param		config_path:  The configuration path
+		:type		config_path:  str
 		"""
 		self.config_path = config_path
 		self.config: Dict[Any, Any] = {}
@@ -116,8 +116,8 @@ class TOMLConfig(AbstractConfig):
 		"""
 		Gets the loaded configuration.
 
-		:returns:   The loaded configuration.
-		:rtype:     Dict[Any, Any]
+		:returns:	The loaded configuration.
+		:rtype:		Dict[Any, Any]
 		"""
 		with open(self.config_path) as f:
 			self.config = toml.load(f)
@@ -134,8 +134,8 @@ class YAMLConfig(AbstractConfig):
 		"""
 		Constructs a new instance.
 
-		:param      config_path:  The configuration path
-		:type       config_path:  str
+		:param		config_path:  The configuration path
+		:type		config_path:  str
 		"""
 		self.config_path = config_path
 		self.config: Dict[Any, Any] = {}
@@ -144,8 +144,8 @@ class YAMLConfig(AbstractConfig):
 		"""
 		Gets the loaded configuration.
 
-		:returns:   The loaded configuration.
-		:rtype:     Dict[Any, Any]
+		:returns:	The loaded configuration.
+		:rtype:		Dict[Any, Any]
 		"""
 		with open(self.config_path) as f:
 			self.config = yaml.load(f, Loader=yaml.FullLoader)
@@ -162,18 +162,18 @@ class ConfigurationProvider(Provider):
 		"""
 		Constructs a new instance.
 
-		:param      config_path:  The configuration path
-		:type       config_path:  str
+		:param		config_path:  The configuration path
+		:type		config_path:  str
 		"""
 		self.factory = ConfigFactory(config_path)
 		self.config = self.factory.create_config()
 
-	def get_instance(self) -> AbstractConfig:
+	def __call__(self) -> AbstractConfig:
 		"""
 		Gets the instance.
 
-		:returns:   The instance.
-		:rtype:     AbstractConfig
+		:returns:	The instance.
+		:rtype:		AbstractConfig
 		"""
-		
+
 		return self.config
